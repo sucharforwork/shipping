@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html lang="th">
-   <head>
-       <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-       <title>ข้อมูลจาก Google Sheets</title>
-      <base target="_top">
-   </head>
-   <body>
-      <iframe style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;border: 0;" src="https://script.google.com/macros/s/AKfycbxiYTBlT414xzT0PyiyPftTvMeh7DzA0QaeE6V_UW7lQqXgbkSid-gXgSf4jil9L65o/exec"></iframe>
-   </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SUCHAR CARGO</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #f3f4f6; }
+        iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    </style>
+</head>
+<body>
+    <iframe id="appFrame"></iframe>
+
+    <script>
+        // 1. ใส่ URL ของ Google Apps Script ของคุณ
+        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxRLfz_12zarwbro_9eQ9fzex_sTr_6UraJtUD8a-kGAuHnfi4RM371ATFpVUkGu8-4/exec";
+        
+        // 2. ตรวจสอบว่าผู้ใช้กำลังจะไปหน้าไหน (ดึงค่าจาก ?page=...)
+        const urlParams = new URLSearchParams(window.location.search);
+        const page = urlParams.get('page') || 'index'; 
+        
+        // 3. สั่งให้ Iframe โหลดหน้าเว็บที่ต้องการจาก Google Script
+        document.getElementById('appFrame').src = GAS_WEB_APP_URL + "?page=" + page;
+    </script>
+</body>
 </html>
