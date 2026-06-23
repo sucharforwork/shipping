@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>My App on GitHub</title>
+</head>
+<body>
+    <h1>ข้อมูลจาก Google Sheets</h1>
+    <div id="result">กำลังโหลด...</div>
+
+    <script>
+        // เอา URL ที่ได้จาก Apps Script มาใส่ตรงนี้
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbzZpVWIHY4LnuKUiz140PKvHZqG2eW3MVACiGCvH2Uu7sTjoEYg_TW8RXo6P3mqaA-x/exec';
+
+        fetch(scriptUrl)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result.data); // ลองดูข้อมูลใน Console
+                document.getElementById('result').innerText = "โหลดสำเร็จ! มีข้อมูล " + result.data.length + " แถว";
+                
+                // สามารถเขียนโค้ดเพื่อวนลูปสร้างตาราง (Table) ต่อได้ที่นี่
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                document.getElementById('result').innerText = "เกิดข้อผิดพลาดในการโหลดข้อมูล";
+            });
+    </script>
+</body>
+</html>
