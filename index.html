@@ -13,14 +13,15 @@
     <iframe id="appFrame"></iframe>
 
     <script>
-        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzrp6T_e42uW3e9GoU0fBtFmGriWogF1DpAN-SG9QpxdnnK4yDSYVi1VT8am32DBBBFUQ/exec";
+        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzKgkZ1MIy_nCWjCDL2Bi0Z3qAA2eUkMCvVKL1xXZ_H6Vf5_EjdI4dUDiODoPhHTNO-ag/exec";
         
-        // 2. ตรวจสอบว่าผู้ใช้กำลังจะไปหน้าไหน (ดึงค่าจาก ?page=...)
         const urlParams = new URLSearchParams(window.location.search);
-        const page = urlParams.get('page') || 'index'; 
         
-        // 3. สั่งให้ Iframe โหลดหน้าเว็บที่ต้องการจาก Google Script
-        document.getElementById('appFrame').src = GAS_WEB_APP_URL + "?page=" + page;
+        if (!urlParams.has('page')) {
+            urlParams.set('page', 'index');
+        }
+        
+        document.getElementById('appFrame').src = GAS_WEB_APP_URL + "?" + urlParams.toString();
     </script>
 </body>
 </html>
